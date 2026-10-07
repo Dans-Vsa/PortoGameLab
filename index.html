@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Portofolio</title>
+  <meta name="description" content="Portofolio interaktif bergaya game — jelajahi lab riset. / Interactive gamified portfolio — explore the research lab." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%94%AC%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div class="hud-left">
+      <div class="id-card">
+        <span class="id-dot"></span>
+        <div>
+          <b id="hud-name">Peneliti</b>
+          <small id="hud-role"></small>
+        </div>
+      </div>
+      <div class="progress">
+        <div class="p-top"><span data-i18n="hud_data">DATA RISET</span><span id="ptext">0/0</span></div>
+        <div class="pbar"><i id="pfill"></i></div>
+      </div>
+      <div id="location">LOKASI: LOBI</div>
+    </div>
+    <div class="hud-right">
+      <div class="hud-btns">
+        <button id="btn-quick" data-i18n-title="btn_quick_title">📄 <span data-i18n="btn_quick">Ringkas</span></button>
+        <button class="btn-lang" data-i18n-title="lang_title">🌐 ID/EN</button>
+        <button id="btn-sound" data-i18n-title="sound_title">🔊</button>
+        <button id="btn-help" data-i18n-title="help_attr">?</button>
+      </div>
+      <canvas id="minimap" width="144" height="96"></canvas>
+    </div>
+  </div>
+
+  <div id="banner"><small></small><b></b></div>
+  <div id="toasts"></div>
+  <div id="hint"></div>
+
+  <!-- Exhibit modal -->
+  <div id="modal" class="hidden" role="dialog" aria-modal="true">
+    <div class="m-card">
+      <button class="m-close" data-i18n-aria="close">✕</button>
+      <div id="m-content"></div>
+    </div>
+  </div>
+
+  <!-- NPC dialog -->
+  <div id="dialog" class="hidden">
+    <div class="d-name"></div>
+    <div class="d-text"></div>
+    <div class="d-next">▼</div>
+  </div>
+
+  <!-- Intro -->
+  <div id="intro">
+    <div class="scan"></div>
+    <button class="btn-lang intro-lang" data-i18n-title="lang_title">🌐 ID/EN</button>
+    <div class="intro-inner">
+      <p class="intro-kicker" data-i18n="kicker">SELAMAT DATANG DI</p>
+      <h1><span class="intro-label" data-i18n="intro_label">PORTOFOLIO</span><span id="intro-title"></span></h1>
+      <p id="intro-role"></p>
+      <p id="intro-tagline"></p>
+      <div class="pass">
+        <div class="pass-head" data-i18n="pass_head">CARA MENJELAJAH</div>
+        <div class="pass-body">
+          <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <span data-i18n="pass_move">Jalan</span></div>
+          <div><kbd>Shift</kbd> <span data-i18n="pass_run">Lari</span></div>
+          <div><kbd>E</kbd> / <kbd data-i18n="key_space">Spasi</kbd> <span data-i18n="pass_inspect">Periksa & bicara</span></div>
+          <div><kbd>Q</kbd> <span data-i18n="pass_quick">Tampilan ringkas</span> &nbsp; <kbd>M</kbd> <span data-i18n="pass_map">Peta mini</span> &nbsp; <kbd>L</kbd> ID/EN</div>
+        </div>
+      </div>
+      <button id="btn-start" data-i18n="btn_start">JELAJAHI PORTOFOLIO ▶</button>
+      <button id="btn-skip" class="link" data-i18n="btn_skip">Lewati game — lihat portofolio versi biasa</button>
+    </div>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touch" class="hidden">
+    <div class="dpad">
+      <button data-dir="up">▲</button>
+      <button data-dir="left">◀</button>
+      <button data-dir="right">▶</button>
+      <button data-dir="down">▼</button>
+    </div>
+    <div class="touch-right">
+      <button id="t-run" data-i18n="t_run">LARI</button>
+      <button id="t-act">E</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
