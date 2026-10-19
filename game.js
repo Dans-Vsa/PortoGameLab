@@ -56,6 +56,7 @@ const STR = {
     ach_guide_t: 'Pengunjung Ramah', ach_guide_d: 'Kamu sudah mengobrol dengan {name}.',
     status_left: 'Laporan status: masih ada {n} exhibit yang belum di-scan.',
     status_full: 'Laporan status: kamu sudah punya AKSES PENUH. Luar biasa!',
+    used_in: 'Dipakai di', not_yet: 'Bagian dari alur kerja harian, belum ada repo publik untuk ditunjukkan.',
     wait_t: '{name} MENUNGGUMU', wait_d: 'Bicaralah dengan robot di lobi untuk pengarahan singkat.',
     hud_data: 'DATA RISET', btn_quick: 'Ringkas', btn_quick_title: 'Tampilan ringkas (Q)', sound_title: 'Suara',
     help_attr: 'Bantuan (H)', lang_title: 'Ganti bahasa (L)', close: 'Tutup',
@@ -97,6 +98,7 @@ const STR = {
     ach_guide_t: 'Friendly Visitor', ach_guide_d: 'You talked to {name}.',
     status_left: 'Status report: {n} exhibit(s) still unscanned.',
     status_full: 'Status report: you have FULL CLEARANCE. Impressive!',
+    used_in: 'Used in', not_yet: 'Part of my everyday workflow, no public repo to show yet.',
     wait_t: '{name} IS WAITING', wait_d: 'Talk to the robot in the lobby for a quick briefing.',
     hud_data: 'RESEARCH DATA', btn_quick: 'Quick View', btn_quick_title: 'Quick view (Q)', sound_title: 'Sound',
     help_attr: 'Help (H)', lang_title: 'Switch language (L)', close: 'Close',
@@ -901,6 +903,14 @@ function enterRoom(r) {
 /* =========================================================
    CONTENT RENDERERS
    ========================================================= */
+// "Used in": links to the GitHub repos that use a tech (d.usedIn), or a note when there are none yet
+const usedIn = (d) => {
+  if (!Array.isArray(d.usedIn)) return '';
+  const gh = D.githubUser || '';
+  return `<h3>// ${tt('used_in').toUpperCase()}</h3>${d.usedIn.length
+    ? `<div class="tags">${d.usedIn.map((r) => `<a class="tag" href="https://github.com/${esc(gh)}/${esc(r)}" target="_blank" rel="noopener">${esc(r)}</a>`).join('')}</div>`
+    : `<p class="meta">${tt('not_yet')}</p>`}`;
+};
 const tags = (arr) => (arr && arr.length ? `<div class="tags">${arr.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>` : '');
 const rankOf = (l) => tt(l >= 90 ? 'rank4' : l >= 75 ? 'rank3' : l >= 55 ? 'rank2' : 'rank1');
 const contactLinks = () => `<div class="contact-list">${(D.contact || []).map((c) =>
@@ -918,18 +928,19 @@ const R = {
     </div>
     ${about.highlights && about.highlights.length ? `<h3>// ${tt('h_findings')}</h3><ul>${about.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
     <!--fieldnotes--><h3>// ${tt('h_fieldnotes')}</h3><p class="meta">${tt('fieldnotes')}</p>`,
-  education: (d) => `<div class="timeline-item"><b>${esc(d.degree)}</b><br><span class="meta">${esc(d.school)} · ${esc(d.period)}</span><p>${esc(d.desc)}</p></div>`,
+  education: (d) => `<div class="timeline-item"><b>${esc(d.degree || d.school)}</b><br><span class="meta">${[d.degree ? d.school : '', d.period].map(tr).filter(Boolean).map(esc).join(' · ')}</span>${d.desc ? `<p>${esc(d.desc)}</p>` : ''}</div>`,
   experience: (d) => `<div class="timeline-item"><b>${esc(d.role)}</b><br><span class="meta">${esc(d.company)} · ${esc(d.period)}</span><p>${esc(d.desc)}</p></div>`,
   note: (d) => `<div class="big-icon">${esc(d.icon || '★')}</div><p>${esc(d.text)}</p>`,
   skill: (d) => {
+    const hasLvl = d.level != null && d.level !== '';
     const lvl = Math.max(0, Math.min(100, +d.level || 0));
     return `<div class="big-icon" style="font-family:var(--pixel);font-size:30px;color:var(--c)">${esc(d.icon || initials(d.name))}</div>
       <p class="meta">${tt('category')}: ${esc(d.category)}</p>
-      <div style="display:flex;justify-content:space-between"><span class="rank">${rankOf(lvl)}</span><span class="rank">${lvl}%</span></div>
-      <div class="bar"><i style="width:${lvl}%"></i></div>
-      <p style="margin-top:14px">${esc(d.desc)}</p>`;
+      ${hasLvl ? `<div style="display:flex;justify-content:space-between"><span class="rank">${rankOf(lvl)}</span><span class="rank">${lvl}%</span></div>
+      <div class="bar"><i style="width:${lvl}%"></i></div>` : ''}
+      ${d.desc ? `<p style="margin-top:14px">${esc(d.desc)}</p>` : ''}${usedIn(d)}`;
   },
-  tool: (d) => `<div class="big-icon">${esc(d.icon || '🔧')}</div><p class="meta" style="text-align:center">${esc(d.category)}</p><p>${esc(d.desc)}</p>`,
+  tool: (d) => `<div class="big-icon">${esc(d.icon || '🔧')}</div><p class="meta" style="text-align:center">${esc(d.category)}</p>${d.desc ? `<p>${esc(d.desc)}</p>` : ''}${usedIn(d)}`,
   cert: (d) => `
     ${d.image ? `<img class="cert-img" src="${url(d.image)}" alt="${esc(d.title)}">` : `<div class="cert-ph">${tt('cert_ph')}<br>${esc(d.title)}<br>— ${esc(d.issuer)} —</div>`}
     <p class="meta">${tt('issued_by')} <b>${esc(d.issuer)}</b>${d.date ? ` · ${esc(d.date)}` : ''}</p>
@@ -1033,7 +1044,7 @@ function openQuickView() {
       ${D.cvUrl ? `<div class="btns"><a class="btn" href="${url(D.cvUrl)}" target="_blank" rel="noopener">⬇ ${tt('download_cv')}</a></div>` : ''}
       ${sec(tt('qv_exp'), (about.experience || []).map(R.experience).join(''))}
       ${sec(tt('qv_edu'), (about.education || []).map(R.education).join(''))}
-      ${sec(tt('qv_skills'), cards(D.skills, (d) => `<b>${esc(d.name)}</b><div class="meta">${esc(d.category)} · ${+d.level || 0}%</div><div class="bar"><i style="width:${+d.level || 0}%"></i></div>`))}
+      ${sec(tt('qv_skills'), cards(D.skills, (d) => `<b>${esc(d.icon || '')} ${esc(d.name)}</b><div class="meta">${esc(d.category)}${d.level != null ? ` · ${+d.level || 0}%` : ''}</div>${d.level != null ? `<div class="bar"><i style="width:${+d.level || 0}%"></i></div>` : ''}`))}
       ${sec(tt('qv_tools'), cards(D.tools, (d) => `<b>${esc(d.icon || '')} ${esc(d.name)}</b><div class="meta">${esc(d.category)}</div>`))}
       ${sec(tt('qv_certs'), cards(D.certificates, (d) => `<b>${esc(d.title)}</b><div class="meta">${esc(d.issuer)} · ${esc(d.date)}</div>${d.url ? `<a href="${url(d.url)}" target="_blank" rel="noopener">${tt('verify')} →</a>` : ''}`))}
       ${sec(tt('qv_projects'), cards(D.projects, (d) => `<b>${esc(d.icon || '')} ${esc(d.title)}</b><div class="meta">${esc(d.desc)}</div>${tags(d.tech)}${d.demo ? `<a href="${url(d.demo)}" target="_blank" rel="noopener">Demo</a> ` : ''}${d.repo ? `<a href="${url(d.repo)}" target="_blank" rel="noopener">${tt('code')}</a>` : ''}`))}

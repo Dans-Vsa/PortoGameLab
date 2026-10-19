@@ -14,8 +14,8 @@ Portofolio interaktif bergaya game: pengunjung berjalan di dalam laboratorium ri
 ```
 - **Lobby**: tempat spawn, robot pemandu ARIA, Welcome Board, Contact Terminal, kiosk CV
 - **About Me**: terminal profil + papan pendidikan, pengalaman, dan hobi
-- **Skills Lab**: pedestal hologram (level skill)
-- **Tools Workshop**: etalase kaca berisi tools
+- **Skills Lab**: pedestal hologram (tech + repo GitHub yang memakainya)
+- **Tools Workshop**: etalase kaca berisi backend, database, desain & tools
 - **Certificate Gallery**: bingkai sertifikat (thumbnail gambar otomatis tampil)
 - **Project Archive**: monitor proyek
 

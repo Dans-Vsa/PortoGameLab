@@ -1,6 +1,7 @@
 /* =========================================================
    DATA PORTOFOLIO — edit file ini saja untuk mengganti isi web.
    Semua ruangan & exhibit di dalam lab dibuat otomatis dari data ini.
+   Isi disamakan dengan portofolio utama: https://my-portofolio-bay-nine.vercel.app
 
    DUA BAHASA (ID/EN):
    - Teks biasa  : "Halo"                       -> tampil sama di kedua bahasa
@@ -9,34 +10,41 @@
 
    - Gambar: taruh di folder assets/ lalu tulis path-nya, mis. "assets/sertif-1.jpg"
    - Proyek: "image" = screenshot utama, "gallery" = screenshot tambahan (opsional)
+   - Skill/tools: "usedIn" = daftar repo GitHub yang memakai tech tsb ([] = belum ada repo publik)
    - Kosongkan ("") field yang tidak dipakai.
    - Maks 12 exhibit per ruangan; kelebihannya otomatis masuk ke "Server Arsip".
    ========================================================= */
 window.PORTFOLIO = {
   name: "Danish Vesa Bintang Parikesit",
-  role: { id: "Mahasiswa Informatika & Game Developer", en: "Informatics Student & Game Developer" },
+  nickname: "Vesa",
+  githubUser: "Dans-Vsa",
+  role: "Frontend Developer & UI/UX Designer",
   tagline: {
-    id: "Membangun hal-hal bermanfaat dengan kode, data, dan rasa ingin tahu.",
-    en: "Building useful things with code, data, and curiosity."
+    id: "Mengubah ide kreatif dan kebutuhan pengguna menjadi antarmuka web modern, mudah diakses, dan terasa natural.",
+    en: "Turning creative concepts and user needs into modern, accessible web interfaces that feel obvious."
   },
-  photo: "",                 // contoh: "assets/me.jpg"
+  photo: "",
   location: "Yogyakarta, Indonesia",
-  cvUrl: "",                 // contoh: "assets/cv.pdf" — kalau diisi, muncul kios CV di Lobi
+  cvUrl: { id: "assets/cv/Danish-Vesa-CV-ID.pdf", en: "assets/cv/Danish-Vesa-CV-EN.pdf" },
 
   about: {
     bio: {
-      id: "Halo! Saya seorang developer yang senang mengubah ide menjadi pengalaman interaktif. Ganti teks ini dengan ceritamu sendiri: apa yang kamu kerjakan, apa yang memotivasimu, dan apa yang sedang kamu cari.",
-      en: "Hi! I'm a developer who loves turning ideas into interactive experiences. Replace this text with your own story: what you do, what drives you, and what you're looking for."
+      id: "Saya Danish Vesa Bintang Parikesit (panggil saja Vesa). Frontend Developer dan UI/UX Designer dengan pengalaman lebih dari 2 tahun membangun aplikasi web yang modern, responsif, dan berpusat pada pengguna. Perjalanan saya berawal dari rasa penasaran tentang bagaimana antarmuka yang baik bisa mengubah cara orang merasakan sebuah produk. Sekarang saya mengubah desain mockup menjadi website interaktif yang presisi dengan React, Tailwind CSS, dan tooling frontend modern. Bagi saya, desain yang hebat bukan sekadar tampilan. Desain yang hebat berarti fungsi yang mulus, aksesibel, dan pengalaman digital yang bisa diandalkan setiap hari.",
+      en: "I'm Danish Vesa Bintang Parikesit (call me Vesa). A Frontend Developer and UI/UX Designer with over 2 years of experience creating modern, responsive, user-centered web applications. My journey started with a fascination for how a good interface can change the way people feel about a product. Today I turn design mockups into pixel-perfect, interactive websites with React, Tailwind CSS and modern frontend tooling. For me, great design is more than looks. It is smooth functionality, accessibility, and digital journeys that real people can rely on every day."
     },
     highlights: [
-      { id: "3+ tahun membangun aplikasi web", en: "3+ years building web applications" },
-      { id: "Tertarik pada AI, game development, dan UI/UX", en: "Interested in AI, game dev, and UI/UX" },
-      { id: "Terbuka untuk magang & proyek freelance", en: "Open for internships & freelance work" }
+      { id: "30+ proyek selesai", en: "30+ projects completed" },
+      { id: "2+ tahun pengalaman", en: "2+ years of experience" },
+      { id: "15+ klien puas", en: "15+ happy clients" },
+      { id: "Terbuka untuk proyek freelance dan posisi full-time", en: "Available for freelance projects and full-time roles" }
     ],
-    // XXX = belum diisi
     education: [
-      { school: "XXX", degree: "XXX", period: "XXX", desc: "XXX" },
-      { school: "XXX", degree: "XXX", period: "XXX", desc: "XXX" }
+      {
+        school: { id: "Universitas Teknologi Digital Indonesia (UTDI)", en: "Digital Technology University of Indonesia (UTDI)" },
+        degree: "Informatika",
+        period: "",
+        desc: { id: "Universitas", en: "University" }
+      }
     ],
     experience: [
       {
@@ -47,36 +55,52 @@ window.PORTFOLIO = {
           id: "Mengikuti program Magang Mandiri MSIB (Kampus Merdeka) Batch 4 di Divisi Python Machine Learning dan menyelesaikannya dengan predikat sangat baik.",
           en: "Took part in the MSIB (Kampus Merdeka) Batch 4 independent internship in the Python Machine Learning Division and completed it with a very good rating."
         }
-      },
-      { company: "XXX", role: "XXX", period: "XXX", desc: "XXX" }
-    ],
-    extras: [
-      {
-        title: { id: "Hobi", en: "Hobbies" }, icon: "🎮",
-        text: { id: "Membuat game, fotografi, dan membaca novel fiksi ilmiah.", en: "Game development, photography, and reading sci-fi." }
       }
+    ],
+    // "Yang saya kerjakan" + penutup dari halaman About portofolio utama
+    extras: [
+      { title: "Frontend Development", icon: "💻",
+        text: { id: "Antarmuka yang responsif dan cepat dengan React dan Tailwind CSS, dari landing page sampai aplikasi web utuh.",
+                en: "Responsive, fast interfaces in React and Tailwind CSS, from landing pages to full web apps." } },
+      { title: "UI/UX Design", icon: "🎨",
+        text: { id: "Wireframe, prototipe, dan design system di Figma yang dirancang sesuai cara orang benar-benar memakai produk.",
+                en: "Wireframes, prototypes and design systems in Figma, shaped around how people actually use a product." } },
+      { title: "Creative Design", icon: "✨",
+        text: { id: "Identitas visual, animasi, dan detail kecil yang memberi produk karakternya sendiri.",
+                en: "Visual identity, motion and small details that give a product its own character." } },
+      { title: { id: "Di Luar Ngoding", en: "Beyond Code" }, icon: "🧭",
+        text: { id: "Di luar ngoding dan mendesain, saya suka mengikuti tren web, bereksperimen dengan design system, atau mengulik ide-ide open source.",
+                en: "When I'm not coding or designing, I'm exploring web trends, experimenting with design systems, or tinkering with open-source ideas." } }
     ]
   },
 
-  // level: 0-100
+  // Tech stack (sama dengan portofolio utama). Lab Keahlian = frontend, bahasa, game.
   skills: [
-    { name: "JavaScript", icon: "JS",  category: { id: "Pemrograman", en: "Programming" }, level: 88, desc: "ES6+, DOM, async, Canvas API." },
-    { name: "Python",     icon: "PY",  category: { id: "Pemrograman", en: "Programming" }, level: 80, desc: { id: "Scripting, analisis data, otomasi.", en: "Scripting, data analysis, automation." } },
-    { name: "React",      icon: "⚛",   category: "Frontend", level: 78, desc: { id: "Hooks, state management, desain komponen.", en: "Hooks, state management, component design." } },
-    { name: "HTML & CSS", icon: "</>", category: "Frontend", level: 90, desc: { id: "HTML semantik, layout responsif, animasi.", en: "Semantic HTML, responsive layouts, animations." } },
-    { name: "Node.js",    icon: "NJ",  category: "Backend",  level: 70, desc: { id: "Membuat REST API dengan Express.", en: "REST APIs with Express." } },
-    { name: "SQL",        icon: "DB",  category: "Data",     level: 72, desc: { id: "MySQL & PostgreSQL, optimasi query.", en: "MySQL & PostgreSQL, query optimization." } },
-    { name: "UI/UX",      icon: "UX",  category: { id: "Desain", en: "Design" }, level: 75, desc: { id: "Wireframe dan prototipe di Figma.", en: "Wireframing and prototyping in Figma." } },
-    { name: "Problem Solving", icon: "∑", category: "Soft Skill", level: 85, desc: { id: "Memecah masalah kompleks menjadi langkah-langkah yang jelas.", en: "Breaking down complex problems into clear steps." } }
+    { name: "React",        icon: "⚛",   category: "Frontend",                         usedIn: ["my-portofolio", "MedicalSystem"] },
+    { name: "Tailwind CSS", icon: "TW",  category: "Frontend",                         usedIn: ["my-portofolio", "Foodstall-System", "MedicalSystem"] },
+    { name: "Bootstrap",    icon: "BS",  category: "Frontend",                         usedIn: [] },
+    { name: "JavaScript",   icon: "JS",  category: { id: "Bahasa", en: "Language" },   usedIn: ["legenda-lembah-angin", "PortoGameLab", "fujimoto-archive", "look-back"] },
+    { name: "HTML5",        icon: "</>", category: { id: "Bahasa", en: "Language" },   usedIn: ["fujimoto-archive", "chainsaw-man-fanblog", "look-back"] },
+    { name: "CSS3",         icon: "CSS", category: { id: "Bahasa", en: "Language" },   usedIn: ["fujimoto-archive", "chainsaw-man-fanblog", "look-back"] },
+    { name: "Python",       icon: "PY",  category: { id: "Bahasa", en: "Language" },   usedIn: ["spendwise-api", "gitpulse", "gesture-pilot"] },
+    { name: "Java",         icon: "JV",  category: { id: "Bahasa", en: "Language" },   usedIn: ["Game-PlatypusD", "Game-ALIENKI"] },
+    { name: "Godot Engine", icon: "GD",  category: "Game Dev",                         usedIn: ["kopi-tycoon", "legenda-lembah-angin"] }
   ],
 
+  // Bengkel Tools = backend, database, desain, dan tools.
   tools: [
-    { name: "VS Code", icon: "🧩", category: "Editor", desc: { id: "Andalan harian untuk semua proyek.", en: "Daily driver for every project." } },
-    { name: "Git & GitHub", icon: "🐙", category: "Version Control", desc: "Branching, pull request, CI." },
-    { name: "Figma", icon: "🎨", category: { id: "Desain", en: "Design" }, desc: { id: "Desain UI dan prototipe.", en: "UI design and prototyping." } },
-    { name: "Docker", icon: "🐳", category: "DevOps", desc: { id: "Membungkus aplikasi agar lingkungannya konsisten.", en: "Containerizing apps for consistent environments." } },
-    { name: "Postman", icon: "📮", category: "API", desc: { id: "Menguji dan mendokumentasikan API.", en: "Testing and documenting APIs." } },
-    { name: "Unity", icon: "🕹", category: "Game Engine", desc: { id: "Membuat prototipe game kecil.", en: "Prototyping small games." } }
+    { name: "Node.js",  icon: "🟢", category: "Backend",                         usedIn: [] },
+    { name: "PHP",      icon: "🐘", category: "Backend",                         usedIn: ["Foodstall-System", "PFW-InstalBreeze-JetSream"] },
+    { name: "Laravel",  icon: "🔺", category: "Backend",                         usedIn: ["Foodstall-System", "PFW-InstalBreeze-JetSream"] },
+    { name: "FastAPI",  icon: "⚡", category: "Backend",                         usedIn: ["spendwise-api"] },
+    { name: "MySQL",    icon: "🐬", category: "Database",                        usedIn: ["Foodstall-System"] },
+    { name: "SQLite",   icon: "🪶", category: "Database",                        usedIn: ["spendwise-api"] },
+    { name: "MongoDB",  icon: "🍃", category: "Database",                        usedIn: [] },
+    { name: "Figma",    icon: "🎨", category: { id: "Desain", en: "Design" },    usedIn: ["MedicalSystem"] },
+    { name: "Git",      icon: "🌿", category: "Tools",                           usedIn: [] },
+    { name: "VS Code",  icon: "🧩", category: "Tools",                           usedIn: [] },
+    { name: "Docker",   icon: "🐳", category: "Tools",                           usedIn: ["spendwise-api"] },
+    { name: "Vite",     icon: "💜", category: "Tools",                           usedIn: ["my-portofolio", "Foodstall-System", "MedicalSystem"] }
   ],
 
   // urutan = urutan di Galeri Sertifikat (maks 12 per ruangan)
@@ -139,33 +163,72 @@ window.PORTFOLIO = {
       tags: ["Web", { id: "Dasar", en: "Fundamentals" }] }
   ],
 
+  // Urutan sama dengan portofolio utama.
   projects: [
     { title: "Legenda Lembah Angin", icon: "🗡",
       desc: {
-        id: "Game RPG turn-based dengan sistem ATB (Active Time Battle) yang bisa dimainkan langsung di browser. Tiga pengembara (Kael, Rina, dan Lyra) berangkat menghentikan Wyrm Kabut. Fitur: bar BURST untuk jurus pamungkas, kelemahan elemen (Api, Es, Petir), serangan kritis, status racun, level up & skill baru, desa dengan toko dan NPC, peti harta, pertarungan bos, serta save/load. Semua grafis pixel art dan musik chiptune dibuat lewat kode. Tersedia juga versi Godot 4.",
-        en: "A turn-based RPG with an ATB (Active Time Battle) system, playable right in the browser. Three wanderers (Kael, Rina, and Lyra) set out to stop the Mist Wyrm. Features: BURST gauge for ultimate moves, elemental weaknesses (Fire, Ice, Lightning), critical hits, poison status, level-ups & new skills, a village with shops and NPCs, treasure chests, a boss fight, and save/load. All pixel art and chiptune music are generated in code. A Godot 4 version is also available."
+        id: "RPG turn-based dengan sistem Active Time Battle yang jalan di browser. Tiga pahlawan, kelemahan elemen, jurus burst, pertarungan bos, dan fitur simpan. Semua pixel art dan musik chiptune dibuat lewat kode.",
+        en: "Turn-based RPG with an Active Time Battle system that runs in the browser. Three heroes, elemental weaknesses, burst skills, a boss fight and saves, with all pixel art and chiptune music generated in code."
       },
-      tech: ["JavaScript", "HTML5 Canvas", "Web Audio", "Godot 4"],
+      tech: ["JavaScript", "Canvas", "Godot 4"],
       image: "assets/projects/legenda-battle.jpg",
       gallery: ["assets/projects/legenda-village.jpg", "assets/projects/legenda-title.jpg"],
       demo: "https://dans-vsa.github.io/legenda-lembah-angin/",
       repo: "https://github.com/Dans-Vsa/legenda-lembah-angin" },
     { title: "Kopi Tycoon", icon: "☕",
       desc: {
-        id: "Game incremental (idle clicker) bertema kedai kopi untuk mata kuliah Workshop Game. Mulai dari menyeduh kopi manual hingga punya perkebunan sendiri: 6 generator otomatis, tampilan kafe yang hidup dengan pelanggan dan dekorasi, sistem unlock, upgrade & prestige (Biji Emas), save otomatis, dan penghasilan offline. Semua gambar (SVG) dan suara dibuat khusus untuk proyek ini.",
-        en: "An incremental (idle clicker) coffee shop game made for the Game Workshop course. Start by brewing coffee by hand and grow to owning a plantation: 6 automatic generators, a lively café view with customers and decorations, unlock system, upgrades & prestige (Golden Beans), auto-save, and offline earnings. All art (SVG) and sound were made specifically for this project."
+        id: "Game idle clicker tentang membesarkan kedai kopi, dibuat dengan Godot 4. Enam generator, upgrade, prestige, penghasilan offline, dan suasana kafe yang makin ramai seiring bisnis tumbuh.",
+        en: "Idle clicker about growing a coffee shop, built with Godot 4. Six generators, upgrades, prestige, offline earnings and a café scene that fills up as the business grows."
       },
-      tech: ["Godot 4", "GDScript"],
+      tech: ["Godot 4", "GDScript", "Web export"],
       image: "assets/projects/kopi-tycoon.jpg",
-      demo: "https://github.com/Dans-Vsa/kopi-tycoon/releases",
-      repo: "https://github.com/Dans-Vsa/kopi-tycoon" }
+      demo: "https://dans-vsa.github.io/kopi-tycoon/",
+      repo: "https://github.com/Dans-Vsa/kopi-tycoon" },
+    { title: "PortoGameLab", icon: "🔬",
+      desc: {
+        id: "Portofolio yang dijelajahi seperti game. Berjalan di laboratorium riset, scan exhibit, kumpulkan research data dan achievement, lengkap dengan minimap dan UI dua bahasa.",
+        en: "A portfolio you explore as a game. Walk a research lab, scan exhibits, collect research data and achievements, with a minimap and a bilingual UI."
+      },
+      tech: ["JavaScript", "Canvas", "Game design"],
+      image: "assets/projects/gamelab.webp",
+      demo: "https://dans-vsa.github.io/PortoGameLab/",
+      repo: "https://github.com/Dans-Vsa/PortoGameLab" },
+    { title: "Fujimoto Archive", icon: "📚",
+      desc: {
+        id: "Arsip fan semua karya Tatsuki Fujimoto dengan enam situs pendamping: Chainsaw Man, Look Back, Fire Punch, Goodbye Eri, Just Listen to the Song, dan Before Chainsaw Man.",
+        en: "Fan archive of every Tatsuki Fujimoto work with six companion sites: Chainsaw Man, Look Back, Fire Punch, Goodbye Eri, Just Listen to the Song and Before Chainsaw Man."
+      },
+      tech: ["JavaScript", { id: "7 situs", en: "7 sites" }, "ID/EN"],
+      image: "assets/projects/fujimoto.webp",
+      demo: "https://dans-vsa.github.io/fujimoto-archive/",
+      repo: "https://github.com/Dans-Vsa/fujimoto-archive" },
+    { title: "SpendWise API", icon: "💰",
+      desc: {
+        id: "REST API keuangan pribadi dengan autentikasi JWT, transaksi, anggaran bulanan, laporan, serta impor/ekspor CSV. Diuji dengan pytest, siap Docker, dan memakai CI.",
+        en: "REST API for personal finance with JWT auth, transactions, monthly budgets, reports and CSV import/export. Tested with pytest and shipped with Docker and CI."
+      },
+      tech: ["FastAPI", "SQLAlchemy", "Docker"],
+      image: "assets/projects/spendwise.webp",
+      demo: "",
+      repo: "https://github.com/Dans-Vsa/spendwise-api" },
+    { title: "gitpulse", icon: "📈",
+      desc: {
+        id: "Analitik terminal untuk repositori git: kontributor, hotspot perubahan, dan heatmap aktivitas, bisa diekspor ke JSON, CSV, atau Markdown.",
+        en: "Terminal analytics for git repositories: contributors, churn hotspots and activity heatmaps, exportable to JSON, CSV or Markdown."
+      },
+      tech: ["Python", "CLI", "Rich"],
+      image: "assets/projects/gitpulse.webp",
+      demo: "",
+      repo: "https://github.com/Dans-Vsa/gitpulse" }
   ],
 
+  // Sama dengan halaman Kontak portofolio utama.
   contact: [
-    { label: "Email",     icon: "✉", value: "XXX",                       url: "#" },
-    { label: "GitHub",    icon: "🐙", value: "github.com/Dans-Vsa",       url: "https://github.com/Dans-Vsa" },
-    { label: "LinkedIn",  icon: "in", value: "XXX",                       url: "#" },
-    { label: "Instagram", icon: "📷", value: "XXX",                       url: "#" }
+    { label: "Email",     icon: "✉", value: "danishbintang80@gmail.com", url: "mailto:danishbintang80@gmail.com" },
+    { label: "WhatsApp",  icon: "💬", value: "+62 813 8244 9254",         url: "https://wa.me/6281382449254" },
+    { label: "Instagram", icon: "📷", value: "@dasnhilo",                 url: "https://www.instagram.com/dasnhilo/" },
+    { label: "GitHub",    icon: "🐙", value: "Dans-Vsa",                  url: "https://github.com/Dans-Vsa" },
+    { label: { id: "Portofolio utama", en: "Main portfolio" }, icon: "🌐", value: "my-portofolio-bay-nine.vercel.app", url: "https://my-portofolio-bay-nine.vercel.app" }
   ],
 
   // Robot asisten di Lobi
